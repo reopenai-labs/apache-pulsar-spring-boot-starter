@@ -1,1 +1,3 @@
 com.reopenai.component.pulsar.ApachePulsarAutoConfiguration
+com.reopenai.component.pulsar.producer.ProducerAutoConfiguration
+com.reopenai.component.pulsar.producer.extension.dynamic.DynamicProducerAutoConfiguration

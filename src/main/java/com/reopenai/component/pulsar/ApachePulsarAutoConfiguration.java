@@ -4,6 +4,9 @@ import com.reopenai.component.pulsar.configuration.PulsarAdminBuilderCustomizer;
 import com.reopenai.component.pulsar.configuration.PulsarClientBuilderCustomizer;
 import com.reopenai.component.pulsar.configuration.PulsarClientCustomizer;
 import com.reopenai.component.pulsar.configuration.PulsarProperties;
+import com.reopenai.component.pulsar.serialization.DefaultMessageConverterRegister;
+import com.reopenai.component.pulsar.serialization.MessageConverter;
+import com.reopenai.component.pulsar.serialization.MessageConverterRegister;
 import org.apache.pulsar.client.admin.PulsarAdmin;
 import org.apache.pulsar.client.admin.PulsarAdminBuilder;
 import org.apache.pulsar.client.api.*;
@@ -19,6 +22,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.Base64;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -104,6 +108,11 @@ public class ApachePulsarAutoConfiguration {
                     .create(AuthenticationOAuth2.class.getName(), accessToken);
             builder.authentication(auth);
         }
+    }
+
+    @Bean
+    public MessageConverterRegister defaultMessageConverterRegister(List<MessageConverter> converters) {
+        return new DefaultMessageConverterRegister(converters);
     }
 
 }
